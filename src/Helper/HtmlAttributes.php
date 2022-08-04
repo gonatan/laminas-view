@@ -7,8 +7,7 @@ namespace Laminas\View\Helper;
 use Laminas\Escaper\Escaper;
 use Laminas\View\Helper\Escaper\AbstractHelper as AbstractEscapeHelper;
 use Laminas\View\HtmlAttributesSet;
-use Laminas\View\Renderer\PhpRenderer;
-
+use Laminas\View\Renderer\RendererInterface;
 use function assert;
 
 /**
@@ -25,7 +24,7 @@ class HtmlAttributes extends AbstractHelper
     public function __invoke(iterable $attributes = []): HtmlAttributesSet
     {
         $renderer = $this->getView();
-        assert($renderer instanceof PhpRenderer);
+        assert($renderer instanceof RendererInterface);
         $escapePlugin = $renderer->plugin('escapeHtml');
         assert($escapePlugin instanceof AbstractEscapeHelper);
         $escaper = $escapePlugin->getEscaper();
